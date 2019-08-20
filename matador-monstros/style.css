@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+    margin: 0 auto;
+    font-family: 'Montserrat';
+    color: #3d3e3f;
+}
+
+#app {
+    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Player and Monster profile Cards */
+#profiles {
+    font-size: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+    text-align: center;
+}
+
+#profiles ul {
+    list-style: none;
+}
+
+#divPlayerProgressBar {  
+    height: 30px;
+    width: 25rem;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+#playerProgressBar {
+    height: 100%;
+    background-color: #008000;
+}
+
+#playerPercentageHP {
+    font-size: 2.2rem;
+}
+
+#divMonsterProgressBar {  
+    height: 30px;
+    width: 25rem;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+#monsterProgressBar {
+    height: 100%;
+    background-color: #008000;
+}
+
+#monsterPercentageHP {
+    font-size: 2.2rem;
+}
+
+/* Buttons Cards */
+#buttons {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#buttons button {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    padding: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#buttons button:disabled {
+    background-color: #d6d6d6;
+    color: black;
+    text-decoration: line-through;
+}
+
+#attack {
+    border: 1px solid #ee5253;
+    background-color: #ee5253;
+    color: #FFF;
+}
+
+#special {
+    border: 1px solid #feca57;
+    background-color: #feca57;
+    color: #FFF;
+}
+
+#heal {
+    border: 1px solid #1dd1a1;
+    background-color: #1dd1a1;
+    color: #FFF;
+}
+
+#quit {
+    border: 1px solid #8395a7;
+    background-color: #8395a7;
+    color: #FFF;
+}
+
+.quitMessage {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    color: #ee5253;
+    margin: 20px;
+}
+
+/* Battle Log */
+#battleLog {
+    margin: 2rem 0rem;
+    padding-right: 2.5rem;
+}
+
+#battleLog ul {
+    list-style: none;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+/* General Purpose */
+.shadow-border {
+    border: 2px solid #3d3e3f;
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.adminMessage {
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin: 2rem 0rem;
+}
+
+.playerHit {
+    background-color: #48dbfb;
+    color: #FFF;
+}
+
+.playerHeal {
+    background-color: #10ac84;
+    color: #FFF;
+}
+
+.monsterHit {
+    background-color: #ff6b6b;
+    color: #FFF;
+}
+
+/* Responsive media */
+@media (max-width: 767.98px) {
+    #app {
+        width: 100%
+    }
+
+    #profiles {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    #divPlayerProgressBar, #divMonsterProgressBar {
+        width: 30rem;
+    }
+}

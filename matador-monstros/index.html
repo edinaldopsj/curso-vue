@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Matador de Monstros</title>
+
+        <!-- Styling -->
+        <link rel="stylesheet" href="style.css">
+
+        <!-- JS -->
+        <script defer src="https://unpkg.com/vue"></script>
+        <script defer src="app.js"></script>
+    </head>
+    <body>
+        <!-- Main div with game -->
+        <main id="app">
+
+            <!-- Profile Cards -->
+            <section id="profiles" class="shadow-border">
+
+                <!-- Player profile -->
+                <ul class="unitProfile" id="player">
+                    <li id="playerName">Jogador</li>
+                    <li>
+                        <div id="divPlayerProgressBar">
+                            <div id="playerProgressBar" :style="[playerCSS]"></div>
+                            <span id="playerPercentageHP">{{playerHP}}%</span>
+                        </div>
+                    </li>
+                </ul>
+    
+                <!-- Monster profile -->
+                <ul class="unitProfile" id="monster">
+                    <li id="monsterName">Monstro</li>
+                    <li>
+                        <div id="divMonsterProgressBar">
+                            <div id="monsterProgressBar" :style="[monsterCSS]"></div>
+                            <span id="monsterPercentageHP">{{monsterHP}}%</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Button Card -->
+            <section id="buttons" class="shadow-border">
+                <template v-if="message">
+                    <span :class="messageClass">{{ message }}</span>
+                </template>
+                <template v-else-if="gameStarted">
+                    <button id="attack"  type="button" :disabled="isDisabled" @click="attackMonster">Ataque</button>
+                    <button id="special" type="button" :disabled="isDisabled" @click="specialAttackMonster">Especial</button>
+                    <button id="heal"    type="button" :disabled="isDisabled" @click="healSelf">Curar</button>
+                    <button id="quit"    type="button" :disabled="isDisabled" @click="quitGame">Desistir</button>
+                </template>    
+                <template v-else="!gameStarted">
+                    <button id="start" type="button" @click="startGame">Start!</button>
+                </template>            
+            </section>
+
+            <!-- Battle Log Card -->
+            <section id="battleLog" class="shadow-border" v-show="battleLog">
+                <ul id="battleLogData">
+                    <li v-for="message in battleLogMessages.slice().reverse()" :class="message.cssClass">
+                        {{ message.message }} </li>
+                </ul>
+            </section>
+        </main>
+    </body>
+</html>
