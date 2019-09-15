@@ -55,7 +55,7 @@ module.exports = app => {
 			//Se passou por tudo isso, deu certo, e envia msg de sucesso, com array vazio(true)
 			res.status(204).send()
 		} catch (msg) {
-			
+			res.status(400).send(msg)
 		}
 	}
 
@@ -68,7 +68,7 @@ module.exports = app => {
 			return parent.length ? parent[0] : null
 		}
 
-		//Aqui gera o caminho da categoria
+		//Aqui gera o caminho da categoria, gera um array de categorias com seu caminho
 		const categoriesWithPath = categories.map(category => {
 			let path = category.name
 			let parent = getParent(categories, category.parentId) // Procura o pai da categoria, se tiver
@@ -82,6 +82,7 @@ module.exports = app => {
 			return { ...category, path }
 		})
 
+		//Com o array gerado, organiza por ordem alfabética
 		categoriesWithPath.sort((a,b) => {
 			if(a.path < b.path) return -1
 			if(a.path > b.path) return 1
@@ -92,12 +93,14 @@ module.exports = app => {
 		return categoriesWithPath
 	}
 
+	//Traz todas as categorias
 	const get = (req, res) => {
 		app.db('categories')
 			.then(categories => res.json(withPath(categories)))
 			.catch(err => err.status(500).send(err))
 	}
 
+	//Traz a categoria específica
 	const getById = (req, res) => {
 		app.db('categories')
 			.where({ id: req.params.id })
